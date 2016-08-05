@@ -16,3 +16,10 @@ function addDigit (digit){
   //document.getElementById('myContainer').style.backgroundColor = "red";
   //alert("Click");
 }
+
+function addOperator(operator){
+  if(inputNum !== ""){
+  inputNum += operator;
+  $(displayDiv).text(inputNum);
+    }
+}
