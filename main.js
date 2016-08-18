@@ -73,8 +73,9 @@ function addDecimal(){
     alert("Number already contains a decimal point.")
   }else{
     if(isNaN(getLastItem()) == false){
+      inputNum += "."
       expression += ".";
-      $(displayDiv).text(expression);
+      $(displayDiv).text(inputNum);
       hasDecimal = true;
     }
   }
