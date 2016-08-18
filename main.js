@@ -1,6 +1,8 @@
 var expression = "";
 var displayDiv = "#display";
 var hasDecimal = false;
+var inputNum = "";
+var answer = "";
 
 $(document).ready(function(){
 
@@ -11,33 +13,50 @@ $(document).ready(function(){
 });
 
 function addDigit (digit){
+  answer = "";
+  inputNum += digit;
+  if(inputNum.length >= 9){
+    alert("Number has reached limit.");
+    return;
+  }
 
-  expression += digit;
-  $(displayDiv).text(expression);
+    expression += digit;
+    $(displayDiv).text(inputNum);
   //document.getElementById('myContainer').style.backgroundColor = "red";
   //alert("Click");
 }
 
 function addOperator(operator){
+  inputNum = "";
+  expression += answer;
+  if(isNaN(getLastItem())){
+    alert("Please enter a number next.");
+    return;
+  }
   if(expression !== ""){
   expression += operator;
-  $(displayDiv).text(expression);
+  $(displayDiv).text(operator);
   hasDecimal = false;
+  console.log(expression);
     }
 }
 
 function clearAll(){
+  inputNum = "";
   expression = "";
+  answer = "";
   $(displayDiv).text(expression);
 }
 
 function backSpace(){
   var tempArr = expression.split("");
-  var tempArr2 = [];
+  var tempArr2 = inputNum.split("");
   tempArr.pop();
+  tempArr2.pop();
+  inputNum = tempArr2.join("");
   expression = tempArr.join("");
   //expression = expression.pop();
-  $(displayDiv).text(expression);
+  $(displayDiv).text(inputNum);
   console.log(expression);
 
 }
@@ -77,9 +96,12 @@ function calculate(){
     alert("Expression must end with a number!");
   }else{
     if(expression !== ""){
+      inputNum = "";
       hasDecimal = false;
       expression = "" + eval(expression);
       $(displayDiv).text(expression);
+      answer = "" + expression;
+      expression = "";
       if(expression.includes(".")){
         hasDecimal = true;
       }
