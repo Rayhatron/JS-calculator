@@ -23,3 +23,19 @@ function addOperator(operator){
   $(displayDiv).text(inputNum);
     }
 }
+
+function clearAll(){
+  inputNum = "";
+  $(displayDiv).text(inputNum);
+}
+
+function backSpace(){
+  var tempArr = inputNum.split("");
+  var tempArr2 = [];
+  tempArr.pop();
+  inputNum = tempArr.join("");
+  //inputNum = inputNum.pop();
+  $(displayDiv).text(inputNum);
+  console.log(inputNum);
+
+}
