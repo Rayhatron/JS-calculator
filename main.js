@@ -1,4 +1,4 @@
-var inputNum = "";
+var expression = "";
 var displayDiv = "#display";
 var hasDecimal = false;
 
@@ -12,38 +12,38 @@ $(document).ready(function(){
 
 function addDigit (digit){
 
-  inputNum += digit;
-  $(displayDiv).text(inputNum);
+  expression += digit;
+  $(displayDiv).text(expression);
   //document.getElementById('myContainer').style.backgroundColor = "red";
   //alert("Click");
 }
 
 function addOperator(operator){
-  if(inputNum !== ""){
-  inputNum += operator;
-  $(displayDiv).text(inputNum);
+  if(expression !== ""){
+  expression += operator;
+  $(displayDiv).text(expression);
   hasDecimal = false;
     }
 }
 
 function clearAll(){
-  inputNum = "";
-  $(displayDiv).text(inputNum);
+  expression = "";
+  $(displayDiv).text(expression);
 }
 
 function backSpace(){
-  var tempArr = inputNum.split("");
+  var tempArr = expression.split("");
   var tempArr2 = [];
   tempArr.pop();
-  inputNum = tempArr.join("");
-  //inputNum = inputNum.pop();
-  $(displayDiv).text(inputNum);
-  console.log(inputNum);
+  expression = tempArr.join("");
+  //expression = expression.pop();
+  $(displayDiv).text(expression);
+  console.log(expression);
 
 }
 
 function getLastItem(){
-  var tempArr = inputNum.split("");
+  var tempArr = expression.split("");
   var index = tempArr.length - 1;
   var arrItem = tempArr[index];
   return arrItem;
@@ -54,16 +54,20 @@ function addDecimal(){
     alert("Number already contains a decimal point.")
   }else{
     if(isNaN(getLastItem()) == false){
-      inputNum += ".";
-      $(displayDiv).text(inputNum);
+      expression += ".";
+      $(displayDiv).text(expression);
       hasDecimal = true;
     }
   }
 }
 
+function makeNegative(){
+  alert("Ooops, this feature is not yet implemented.");
+  }
+
 
 function calculate(){
-  if(inputNum == ""){
+  if(expression == ""){
     alert("Please enter a valid expression.");
     return;
   }
@@ -72,14 +76,14 @@ function calculate(){
   {
     alert("Expression must end with a number!");
   }else{
-    if(inputNum !== ""){
+    if(expression !== ""){
       hasDecimal = false;
-      inputNum = "" + eval(inputNum);
-      $(displayDiv).text(inputNum);
-      if(inputNum.includes(".")){
+      expression = "" + eval(expression);
+      $(displayDiv).text(expression);
+      if(expression.includes(".")){
         hasDecimal = true;
       }
-      console.log(inputNum);
+      console.log(expression);
     }
   }
 }
